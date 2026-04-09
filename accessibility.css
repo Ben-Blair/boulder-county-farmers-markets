@@ -346,3 +346,16 @@ section .a11y-accent-orange {
 .products-site .product-category-header {
   color: #1a1a1a;
 }
+
+/* Default body text on marketplace (reduces WAVE contrast noise on #F5F5F7) */
+.products-site #product-display-area,
+.products-site #featured-product-list,
+.products-site #product-list {
+  color: #1a1a1a;
+}
+.products-site .product-grid-producer,
+.products-site .product-grid-title,
+.products-site .product-grid-unit-name,
+.products-site .product-grid-unit-price {
+  color: #1a1a1a;
+}

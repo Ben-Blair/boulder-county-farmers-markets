@@ -998,8 +998,8 @@ src="https://www.facebook.com/tr?id=746600262732467&ev=PageView
                                         </td>
                                         <td>
                                             <span class="product-modal-quantity-select">
-                                                <label for="qtyModal" class="enter-quantity-label visually-hidden">Quantity: </label>
-                                                <input id="qtyModal-${puId}" class="uk-input uk-form-small" value="1" type="number" style="width: 70px;">
+                                                <label for="qtyModal-${puId}" class="enter-quantity-label visually-hidden">Quantity</label>
+                                                <input id="qtyModal-${puId}" class="uk-input uk-form-small" value="1" type="number" style="width: 70px;" aria-label="Quantity">
                                             </span>
                                         </td>
                                         <td>
@@ -1089,8 +1089,10 @@ src="https://www.facebook.com/tr?id=746600262732467&ev=PageView
                                                     {{/each}}
 
                                                     <div class="uk-width-1-1 uk-form-controls">
+                                                        <label for="subsAgree_${subsId}" class="uk-display-block">
                                                         <input type="checkbox" class="uk-checkbox" id="subsAgree_${subsId}" name="subsAgree_${subsId}">
                                                         I have read and agree to the <strong><a href="javascript:void(0);" onclick="toggleTermsOfService()">Subscription Terms of Service</a></strong>
+                                                        </label>
                                                     </div>
                                                     <div class="uk-width-1-1" id="subs-terms" style="display: none;">
                                                         {{html subscriptionPolicy}}
@@ -1099,7 +1101,8 @@ src="https://www.facebook.com/tr?id=746600262732467&ev=PageView
                                                     <div class="uk-width-1-4@l uk-margin-top">
                                                     </div>
                                                     <div class="uk-width-1-4@l uk-margin-top">
-                                                        Qty: <input id="qtySub-${subsId}" class="uk-input uk-form-small" value="1" type="number" style="width: 70px;">
+                                                        <label for="qtySub-${subsId}" class="uk-margin-small-right">Qty:</label>
+                                                        <input id="qtySub-${subsId}" class="uk-input uk-form-small" value="1" type="number" style="width: 70px;" aria-label="Subscription quantity">
                                                     </div>
                                                     <div class="uk-width-1-2@l uk-margin-top">
                                                         <button class="storeSubSubscribe uk-button uk-button-small uk-button-secondary"
