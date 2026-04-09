@@ -174,10 +174,108 @@ section .a11y-accent-orange {
   color: #a84600 !important;
 }
 
+/*
+ * Cream panels (#f6f4ee): theme still wins on some selectors — headline accents + outline
+ * buttons must be clearly darker than #ed7700 (~2.4:1 on cream).
+ */
+.bg-cream .a11y-accent-orange,
+section.section--split .bg-cream .a11y-accent-orange,
+.bg-cream h2 .a11y-accent-orange,
+.bg-cream .h4 .a11y-accent-orange {
+  color: #6b2d00 !important;
+}
+
+.bg-cream .btn-outline-orange {
+  color: #6b2d00 !important;
+  border-color: #6b2d00 !important;
+}
+.bg-cream .btn-outline-orange:hover {
+  color: #141414 !important;
+  background-color: #d4a574 !important;
+  border-color: #5a2600 !important;
+}
+.bg-cream .btn-outline-orange:focus,
+.bg-cream .btn-outline-orange:focus-visible {
+  color: #141414 !important;
+  background-color: #f0e4d4 !important;
+  border-color: #5a2600 !important;
+}
+
 /* Hero H1 over video — white text + shadow for contrast on moving imagery */
 .hero .text-highlight .text-highlight--line {
   color: #ffffff !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 1px rgba(0, 0, 0, 0.9);
+}
+
+/*
+ * Front page “Visit us in Boulder / Longmont” (only .bg-* + .bg-image in this site):
+ * white copy on brand tint + photo was ~2.9:1 on the orange side. Dark scrim over the
+ * background image yields a stable effective backdrop for WCAG AA.
+ */
+.bg-green.bg-image,
+.bg-orange.bg-image {
+  position: relative;
+  isolation: isolate;
+}
+.bg-green.bg-image::before,
+.bg-orange.bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Strong enough that white text + outline buttons pass AA over bright photos */
+  background: rgba(2, 10, 6, 0.82);
+}
+.bg-orange.bg-image::before {
+  background: rgba(14, 5, 1, 0.9);
+}
+.bg-green.bg-image > *,
+.bg-orange.bg-image > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Second dark layer behind the copy block (WAVE still samples busy edges without this) */
+.bg-green.bg-image > div,
+.bg-orange.bg-image > div {
+  background-color: rgba(0, 0, 0, 0.33);
+  border-radius: 0.75rem;
+}
+
+/* Policy note: solid backing so “No pets, please” never sits on brand orange alone */
+.bg-green.bg-image .visit-panel-policy-callout,
+.bg-orange.bg-image .visit-panel-policy-callout {
+  max-width: 26rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: #141414;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+.bg-green.bg-image .visit-panel-policy-callout .fw-bolder,
+.bg-orange.bg-image .visit-panel-policy-callout .fw-bolder {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Outline button stays clearly “white on dark” after scrim */
+.bg-green.bg-image .btn-outline-white,
+.bg-orange.bg-image .btn-outline-white {
+  color: #ffffff !important;
+  border-color: #f5f5f5 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+.bg-green.bg-image .btn-outline-white:hover,
+.bg-orange.bg-image .btn-outline-white:hover,
+.bg-green.bg-image .btn-outline-white:focus-visible,
+.bg-orange.bg-image .btn-outline-white:focus-visible {
+  color: #0d1f2d !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-shadow: none;
 }
 
 /* White text on photo panels — improve contrast on busy backgrounds */
@@ -211,6 +309,163 @@ section .a11y-accent-orange {
 }
 .newsletter-form-static input[aria-invalid="true"] {
   border: 2px solid #ffb4b4 !important;
+}
+
+/* ========== Front page: contrast for all bright tint / photo + white copy bands ========== */
+
+/* Strategic plan — photo + white type */
+.bg-black.bg-image.text-white,
+section.bg-black.bg-image {
+  position: relative;
+  isolation: isolate;
+}
+.bg-black.bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.62);
+}
+.bg-black.bg-image > * {
+  position: relative;
+  z-index: 1;
+}
+.bg-black.bg-image .btn-outline-white {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+.bg-black.bg-image .btn-outline-white:hover,
+.bg-black.bg-image .btn-outline-white:focus,
+.bg-black.bg-image .btn-outline-white:focus-visible {
+  color: #0d0d0d !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-shadow: none;
+}
+
+/* Volunteer / “Turnip for local” — was white + purple on bright pink */
+section.bg-pink.position-relative {
+  isolation: isolate;
+}
+section.bg-pink.position-relative::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(42, 8, 38, 0.72);
+}
+/* Do not reset position on .img--center-offset (theme uses position:absolute) */
+section.bg-pink.position-relative > .position-relative.overflow-hidden {
+  position: relative;
+  z-index: 1;
+}
+section.bg-pink.position-relative > img.img--center-offset {
+  z-index: 2;
+}
+section.bg-pink .text-white h2,
+section.bg-pink .text-white p,
+section.bg-pink h2,
+section.bg-pink .text-white {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+.bg-pink .a11y-volunteer-pun {
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75) !important;
+}
+section.bg-pink .btn-outline-white {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+section.bg-pink .btn-outline-white:hover,
+section.bg-pink .btn-outline-white:focus,
+section.bg-pink .btn-outline-white:focus-visible {
+  color: #1a0a18 !important;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-shadow: none;
+}
+
+/*
+ * Newsletter / lettuce photo: theme uses multiply + #819c42 — large bright areas fail with white type.
+ * Darken the multiply layer; give form fields a solid dark fill so placeholder + text pass AA.
+ */
+.section--mask-pass-through.bg-green::before {
+  background-color: #0d1208 !important;
+  opacity: 0.94 !important;
+  mix-blend-mode: multiply !important;
+}
+.section--mask-pass-through.bg-green .container {
+  position: relative;
+  z-index: 2;
+}
+
+/*
+ * WAVE (and similar tools) sample the lettuce photo behind transparent layers — white vs green
+ * still fails. One fully opaque card behind *all* copy + controls fixes every element at once.
+ */
+.section--mask-pass-through.bg-green .container > .row.justify-content-between {
+  background-color: #141613;
+  border-radius: 0.75rem;
+  padding: 2rem 1.75rem !important;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.section--mask-pass-through.bg-green .text-white,
+.section--mask-pass-through.bg-green h2.text-white {
+  color: #ffffff !important;
+  text-shadow: none;
+}
+.section--mask-pass-through.bg-green .text-white.mb-4 p {
+  color: #ffffff !important;
+}
+.section--mask-pass-through.bg-green .newsletter-form-static label {
+  color: #ffffff !important;
+  text-shadow: none;
+}
+.section--mask-pass-through.bg-green .newsletter-form-static .field-hint,
+.section--mask-pass-through.bg-green .newsletter-form-static .text-white.small,
+.section--mask-pass-through.bg-green #newsletter-desc {
+  color: #e8e8e8 !important;
+  opacity: 1 !important;
+  text-shadow: none;
+}
+.section--mask-pass-through.bg-green .newsletter-form-static .form-control,
+.section--mask-pass-through.bg-green .newsletter-form-static .form-control-lg {
+  background-color: #1a1e17 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.section--mask-pass-through.bg-green .newsletter-form-static .form-control::placeholder {
+  color: #c8c8c8 !important;
+  opacity: 1 !important;
+}
+.section--mask-pass-through.bg-green .newsletter-form-static .btn-outline-white {
+  color: #ffffff !important;
+  border-color: #f0f0f0 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+.section--mask-pass-through.bg-green .newsletter-form-static .btn-outline-white:hover,
+.section--mask-pass-through.bg-green .newsletter-form-static .btn-outline-white:focus,
+.section--mask-pass-through.bg-green .newsletter-form-static .btn-outline-white:focus-visible {
+  color: #0d1208 !important;
+  background-color: #f5f5f5 !important;
+  border-color: #ffffff !important;
+  text-shadow: none;
+}
+
+/* Instagram strip — Bootstrap orange + white was ~2.9:1 */
+section.bg-orange.text-white.py-5 {
+  background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)), #5c2304 !important;
+}
+section.bg-orange.text-white.py-5 h2 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 /* Decorative full-bleed image — no informative content */
@@ -358,4 +613,155 @@ section .a11y-accent-orange {
 .products-site .product-grid-unit-name,
 .products-site .product-grid-unit-price {
   color: #1a1a1a;
+}
+
+/* —— Products page: WCAG 1.4.3 (contrast) —— */
+/* Theme orange bar: white on #ed7700 is ~2.9:1 — fail AA for normal text */
+body.products-site .sticky-bar {
+  background-color: #a9440c !important;
+  color: #ffffff !important;
+}
+/* Icons on orange (search): light strokes */
+body.products-site .sticky-bar .uk-form-icon {
+  color: #ffffff;
+}
+body.products-site .sticky-bar .uk-form-icon svg [stroke],
+body.products-site .sticky-bar .uk-form-icon svg [stroke="#000"] {
+  stroke: currentColor !important;
+}
+/* Icons on white pill buttons in the bar */
+body.products-site .sticky-bar .uk-button svg [stroke],
+body.products-site .sticky-bar .uk-button svg [stroke="#000"] {
+  stroke: #1a1a1a !important;
+}
+body.products-site .sticky-bar .uk-button svg circle[fill]:not([fill="none"]) {
+  fill: #1a1a1a !important;
+}
+body.products-site .sticky-bar .uk-badge {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+/* Primary / secondary CTAs: white on brand orange must meet 4.5:1 */
+body.products-site .uk-button-primary,
+body.products-site .uk-button-primary:hover,
+body.products-site .uk-button-secondary,
+body.products-site .uk-button-secondary:hover {
+  background-color: #a9440c !important;
+  border-color: #7a3309 !important;
+  color: #ffffff !important;
+}
+
+/* Product photo badges: opaque backing so text is not scored against variable photos */
+body.products-site .product-grid-overlay {
+  opacity: 1 !important;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+body.products-site .product-grid-overlay-onsale {
+  background-color: #9f1239 !important;
+}
+body.products-site .product-grid-overlay-closes {
+  background-color: #9f1239 !important;
+}
+body.products-site .product-grid-overlay-featured,
+body.products-site .product-grid-overlay-subscribe {
+  background-color: #14532d !important;
+}
+
+/* Body / page chrome links: Theme #ed7700 on white fails AA */
+body.products-site a:link:not(.uk-button):not(.uk-button-primary):not(.uk-slidenav):not(.uk-alert-close):not(.uk-logo),
+body.products-site a:visited:not(.uk-button):not(.uk-button-primary):not(.uk-slidenav):not(.uk-alert-close):not(.uk-logo) {
+  color: #a84600;
+}
+body.products-site a:hover:not(.uk-button):not(.uk-button-primary):not(.uk-slidenav):not(.uk-alert-close):not(.uk-logo) {
+  color: #7a3309;
+}
+body.products-site footer a:link,
+body.products-site footer a:visited {
+  color: #ffffff !important;
+}
+body.products-site #main-nav .uk-navbar-nav > li > a:link,
+body.products-site #main-nav .uk-navbar-nav > li > a:visited {
+  color: #252525;
+}
+body.products-site #main-nav .uk-navbar-nav > li > a:hover {
+  color: #7a3309;
+}
+
+/* Tab labels (modal / filters): ensure ≥4.5:1 on white */
+body.products-site .uk-tab > li > a {
+  color: #1a1a1a !important;
+}
+body.products-site .uk-tab > li.uk-active > a {
+  color: #0f172a !important;
+  border-bottom-color: #a9440c !important;
+}
+
+/* Sidebar / cards: titles and muted copy */
+body.products-site .uk-card-title .uk-h5,
+body.products-site .uk-card-title {
+  color: #1a1a1a !important;
+}
+body.products-site .period-info-mobile-shoppingFor,
+body.products-site .period-info-full-shoppingFor {
+  color: #1a1a1a !important;
+}
+body.products-site .uk-text-small,
+body.products-site .product-modal-snap,
+body.products-site .product-modal-double-up {
+  color: #3d3d3d !important;
+}
+
+/* Search field placeholder (not counted as “text” by all tools, but improves legibility) */
+body.products-site .uk-input::placeholder {
+  color: #5c5c5c;
+  opacity: 1;
+}
+
+/* Modal / product detail secondary prices */
+body.products-site .product-modal-unit-reg-price {
+  color: #4a4a4a !important;
+}
+
+/* Current page in account dropdown (no self-referential link) */
+body.products-site .nav-current-page {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Product cards are keyboard-activated (see products-page-a11y.js) */
+body.products-site .product-grid-card:focus-visible,
+body.products-site .product-grid-card-alt:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
+
+/* Replaces deprecated <u> for “looks like a link” without non-link underline confusion */
+body.products-site .a11y-text-link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* “more info available” / “more options available” — small text must stay ≥4.5:1 on card */
+body.products-site .product-grid-unit-more-avail {
+  color: #1a1a1a !important;
+}
+
+/* “Ordering Closed” / “Sold Out” inverted button: #f0506e on #fff is ~3.6:1 — fails AA */
+body.products-site .uk-button-danger-inverted,
+body.products-site .uk-button-danger-inverted:hover,
+body.products-site .uk-button-danger-inverted:focus {
+  color: #7f1d1d !important;
+  background-color: #ffffff !important;
+  border: 1px solid #9f1239 !important;
+}
+
+/* “Ordering Closed” / “Sold Out” / cart & modal errors — UIkit red on light UI */
+body.products-site .uk-text-danger {
+  color: #7f1d1d !important;
 }
