@@ -245,3 +245,81 @@ section .a11y-accent-orange {
   outline-offset: var(--a11y-focus-offset);
   box-shadow: 0 0 0 2px var(--a11y-focus-halo);
 }
+
+/* —— Online marketplace (UIkit) static page —— */
+.products-site a:focus-visible,
+.products-site button:focus-visible,
+.products-site .uk-button:focus-visible,
+.products-site input:focus-visible,
+.products-site select:focus-visible,
+.products-site textarea:focus-visible,
+.products-site [role="button"]:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
+
+.products-site #header a:focus-visible,
+.products-site #header button:focus-visible,
+.products-site #header .uk-navbar-toggle:focus-visible {
+  outline-color: var(--a11y-focus-on-dark);
+  box-shadow: 0 0 0 2px var(--a11y-focus-on-dark-halo), 0 0 0 6px var(--a11y-focus-on-dark);
+}
+
+/* Reflow: logo / sticky bar on narrow viewports (WCAG 1.4.10) */
+@media (max-width: 640px) {
+  .products-site #main-nav .bcfm-container.nav-center {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .products-site #logo-img {
+    max-height: 52px;
+    width: auto;
+  }
+  .products-site .sticky-bar.uk-sticky[style*="width"] {
+    width: 100% !important;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .products-site .lfm-nav-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Shop grid — "more" (⋯): saved markup uses <a uk-icon> with no href; UIkit injects SVG and
+   the click never reaches .product-grid-card[onclick]. Let clicks pass through to the card. */
+.products-site .product-grid-card a.product-grid-unit-elipsis {
+  pointer-events: none !important;
+}
+.products-site .product-grid-card a.product-grid-unit-elipsis * {
+  pointer-events: none !important;
+}
+
+/* Template uses <button> with a real onclick — keep it clickable and match Site.css pill */
+.products-site .product-grid-unit-expand button.product-grid-unit-elipsis {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  line-height: 1;
+  border-radius: 20px;
+  background-color: #ccc;
+  font-weight: bold;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+.products-site .product-grid-unit-expand button.product-grid-unit-elipsis:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: 2px;
+}

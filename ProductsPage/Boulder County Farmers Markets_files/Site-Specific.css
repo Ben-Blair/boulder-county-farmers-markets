@@ -1,0 +1,424 @@
+﻿body {
+}
+/* ============= Header =================x */
+#logo {
+    display: inline-block;
+} 
+#logo img { 
+	height:86px;
+	padding-bottom: 5px;
+}
+ #logo-img {
+}
+@media screen and (max-width: 870px) {
+    #logo-img {
+    }
+}
+@media screen and (max-width: 640px) {
+    #logo-img {
+        margin-top: 0px!important;  
+    }
+}
+/*==================================================== Main Navigation =========================================*/
+/*===Nav Background Colors=========*//* Jim- figure out what colors we need for main nav */
+#main-nav .uk-navbar {
+     
+}
+#main-nav .uk-navbar-nav>li>a:hover {
+    text-decoration: none;
+}
+#main-nav li:hover, #main-nav li:hover a {
+    
+}
+/*background for nav sub-menu dropdown*/
+.uk-dropdown, .uk-dropdown-navbar {
+  
+}
+.uk-nav-dropdown>li>a:focus, .uk-nav-dropdown>li>a:hover {
+  
+}
+/*============*/
+.uk-navbar-nav > li > a {
+    text-decoration: none;
+}
+.uk-navbar-nav > li > a:hover {
+    text-decoration: underline;
+} 
+.main-nav {
+    /*customization*/
+    border-width: 0;
+    min-height: 50px;
+}
+.main-nav  .navbar-nav  li  a, .main-nav  .navbar-nav  li  a:link, .navbar-nav  li  a:visited, .main-nav  .navbar-nav  li  a:active, .main-nav .navbar-nav  li  a:hover, .main-nav .navbar-nav  li  a:focus {
+    /*customization*/
+    padding-right: 20px;
+    border-width: 0;
+} 
+
+.nav-center {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/*================content-template==============*/
+.content-template {
+    margin-top: -10px;
+    margin-bottom: -10px;
+   /*temp*/
+   min-height: 400px;
+}
+.lfm-padding-right {
+    padding-right: 15px;
+}
+.left-half, .right-half, .left-sidebar, .right-sidebar, .main {
+    padding: 10px;
+}
+/*=============end content-template=============*/
+#producer-info {width: 250px;}
+@media screen and (min-width: 560px) {
+    #producer-info {width: 560px;}
+}
+/*============== Customize ================*/
+/*adjust top - includes logo*/
+#main-nav li { 
+    padding-top: 0px;
+} 
+/*adjust top - independent of logo*/
+/* .uk-navbar-nav>li>a {  */
+	/* padding-top: 20px;  */
+/* }  */
+/* #logo img { */
+    /* height: 86px; */
+    /* padding-bottom: 0px; */
+/* } */
+/*For sites with logos that read better larger*/
+#logo img {
+    height: 125px;
+    padding-bottom: 3px;
+	padding-top: 5px;
+}/* */
+/* .uk-navbar-nav>li>a { */
+/* font-size: 14px; */
+/* font-weight: bold; */
+/* }  */
+/*Product name in product boxes on products page to black*/
+.product-headline a {color: #000;}
+/*Boulder County Farmers Markets Customize 2/15/23*/
+#main-nav {
+	background-color: #fff;
+    box-shadow: 0 0 10px rgb(37 37 37 / 20%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid #ed7700;
+    /* margin-top: 35px; */
+	 height: 115px;
+	 /* height: 190px;
+	height: 200px; */
+    transition: 150ms transform ease,150ms background-color ease,150ms height ease;
+}
+.nav-center {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+#logo img {
+	width: 166px;
+	height: 95.333333px;
+    padding-bottom: 0px;
+	padding-top: 0px;
+	/* margin-top: -39px; */
+	/* vertical-align: middle; */
+}
+.uk-navbar-nav>li>a {
+    font-size: 19.2px;
+    font-weight: lighter;
+    text-transform: uppercase;
+	/*adjust top - independent of logo*/
+	padding-top: 40px;
+} 
+.bcfm-container .uk-container {
+		padding-top: 40px;
+		/* padding-left: 115px */
+		padding-left: 30px
+}
+#mobile-filter .uk-navbar-nav > li > a {
+	font-weight: bold;
+	font-size: 14px;
+    color: #444;
+    padding: 0px 12px !important;
+    line-height: 50px;
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/*Hide Schedule link in Subscribe modal on Subscriptions page
+#distribution-schedule {display: none}*/
+/*Hide calendar on Account Subscriptions
+#subscription-schedule {display: none;}*/
+/*Customize dropdown menu from main nav*/
+#menu-box .menu-child-item a {
+	font-family: TrendHMSansOne;
+	font-size: 14px;
+}
+/*
+@media (max-width: 1400px) {
+	.nav-center {
+		max-width: 1320px;
+	}
+}
+@media (max-width: 1200px) {
+	.nav-center {
+		max-width: 1140px;
+	}
+}
+@media (max-width: 992px) {
+	.nav-center {
+    max-width: 960px;
+	}
+}*/
+@media (max-width: 768px) {
+	.bcfm-container .uk-container {
+		padding-top: 0px;
+		padding-left: 0px;
+	}
+	#main-nav {
+		height: 70px; 
+		text-align: center;
+	}
+	#logo img {
+		width: 85px;
+		height: 59px;
+		padding-bottom: 0px;
+		padding-top: 10px;
+	}	
+	.uk-navbar-toggle {
+		color: #000;
+		font-size: 30px;
+		/* font-weight: 300; */
+		/* padding-top: 20px; */
+		/* padding-left: 90px; */
+		float: right;
+		margin-top: -60px;
+		padding-left: 20px;
+	}
+	#main-nav a, #main-nav a:active, #main-nav a:link, #main-nav a:visited {
+		color: #252525;
+		float: right;
+	}
+	#main-nav .uk-navbar-attached {
+	 width: 100%;
+	 padding: 0px;
+	 margin: 0px;
+	}
+	#main-nav .uk-navbar-attached .uk-container {
+	 width: 100%;
+	 padding: 0px;
+	 margin: 0px;
+	}
+	#main-nav .uk-nav-offcanvas {
+		margin-top: 70px;
+	}
+	#main-nav .uk-nav-offcanvas li a {
+	 color: #fff;
+	 display: block;
+	 float: none;
+	 font-family:TrendHMSansOne;
+	 font-size:19.2px;
+	 padding: 16px 0px 8px 16px;
+	}
+	/* .nav-center {
+		max-width: 720px; 
+	}*/
+}/*
+@media (max-width: 576px) {
+	.nav-center  {
+		max-width: 540px;
+	}
+}*/
+/*Footer*/
+.bcfm-footer-social-list>li {
+    display: inline;
+    list-style: none;
+}
+#footer {
+	/* padding-top: 100px; */
+}
+#bcfm-footer-logo {
+	text-align: left;
+}
+#bcfm-footer-logo img {
+	width: 200px;
+}
+#bcfm-footer-copyright {
+	font-size: 16.8px;
+	font-weight: 500;
+	margin-top:24px;
+	text-align: left;
+} 
+.bcfm-footer-social-list {
+	margin-top:24px;
+	text-align: left;
+	padding-left: 0px;
+} 
+#bcfm-facebook img {
+	margin-left:0px;
+	width: 20px;
+}
+#bcfm-twitter img {
+	margin-left:10px;
+	width: 30px;
+}
+#bcfm-instagram img {
+	margin-left:10px;
+	width: 30px;
+}
+.bcfm-footer-col2-header {
+	font-size: 16.8px;
+	font-weight: 700;
+	margin-left:10px;
+	text-align: left;
+}
+.bcfm-footer-col2-link-top {
+	font-size: 16.8px;
+	font-weight: 500;
+	margin-top:8px;
+	margin-left:10px;
+	text-align: left;
+}
+.bcfm-footer-col2-link {
+	font-size: 16.8px;
+	font-weight: 500;
+	margin-top:5px;
+	margin-left:10px;
+	text-align: left;
+}
+.bcfm-footer-col3-link-top {
+	font-size: 16.8px;
+	font-weight: 700;
+	margin-left:10px;
+	text-align: left;
+}
+.bcfm-footer-col3-link {
+	font-size: 16.8px;
+	font-weight: 700;
+	margin-top:5px;
+	margin-left:10px;
+	text-align: left;
+}
+@media (max-width: 992px) {
+	.bcfm-footer-col2-header {
+		margin-top: 40px;
+	}
+	.bcfm-footer-col3-link-top {
+		
+		margin-top: 40px;
+	}	
+	#bcfm-footer-logo {
+		margin-top: 70px;
+	}
+	#bcfm-footer-logo, .bcfm-footer-col2-header, .bcfm-footer-col2-link-top, .bcfm-footer-col2-link, .bcfm-footer-col3-link-top, .bcfm-footer-col3-link, .bcfm-footer-social-list, #bcfm-footer-copyright {
+		text-align: center;
+	}
+}
+.lfm-footer-og {
+	margin-top: 30px;
+}
+/*Accommodate longer category names in product-page drop-down 
+#category-list .uk-nav>li>a {
+    padding: 5px 10px;
+	font-size: 12px;
+}*/
+/*Hide register section on log in page*/
+/*#login-register-section {
+	display: none;
+}*/
+
+/*==========Hide/Show on Producer Page==========*/
+/*Below are the ids for the fields on the Producer page
+#producer-page-images#producer-page-image1#producer-page-image2#producer-name#producer-contact#producer-address#email-address#phone#website
+#producer-description-heading#producer-description#producer-practices-heading#producer-practices#producer-page-products#productsHeading#product-list
+*/
+/* 
+#producer #producer-name {display: none;}
+#producer #producer-page-images {display: none;} 
+#producer #producer-page-image1 {display: none;}
+#producer #producer-page-image2 {display: none;}
+#producer #producer-contact {display: none;}
+#producer #producer-address {display: none;}
+#producer #email-address {display: none;}
+#producer #producer-description {display: none;}
+#producer #producer-description-heading {display: none;}
+#producer #producer-practices-heading {display: none;}
+#producer #producer-practices {display: none;}
+#producer #producer-page-products {display: none;}
+#producer #productsHeading {display: none;}
+#producer #product-list {display: none;}*/
+/*default to hidden*/
+#producer #email-address {display: none;}
+/*hide email on producer page*/
+/*#producer-page-info #email-address {
+	display: none;
+}*/
+/*========end Hide/Show on Producer Page========*/
+/*========Hide/Show on Product Page========*/
+/*.product-remaining {display: none;}*/
+/* Hide Reviews 
+#product-page-reviews {display: none;}*/
+/* Hide Favorites 
+#favorite-button {display: none;}*/
+/*filter dropdowns and label
+#filter-sidebar .uk-text-small {display: none;}
+#producer-filter-box {display: none;}
+#filter-attribute-box {display: none;}*/
+/*========end Hide/Show on Product Page========*/
+/*========Hide/Show on Products Page========*/
+/*.product-remaining {display: none;}*/
+/*========end Hide/Show on Product Page========*/
+/*========Hide info in producer modal from product box on product page========*/
+/*#producer-info .producer-website,  #producer-info .producer-description, #producer-info .producer-practices, #producer-info .producer-label {display: none;}*/
+/*========endHide info in producer modal from product box on product page========*/
+/*========Hide on Register==========*/
+/*Hide the Customer Distribution Location drop-down*/
+/*drop-down*/
+/*
+#loc-div  #cLocId  {
+	display: none;
+}
+/*drop-down and label*/
+/*
+#loc-div  #location {
+    display: none;
+}
+ /*========Hide on Account Information==========*/
+/*Hide the Customer Distribution Location drop-down*/
+/*drop-down*/
+/* #account-info-panel #cLocId  {
+	display: none;
+}
+ */
+/*label*/
+/*
+#account-info-panel label[for="oLocId"] {
+	display: none;
+}
+ */
+/*========Hide on Account Activity==========*/
+ /*Hide "Pay With Credit Card on Account"
+ #account-activity #btnSubmitPayment {display: none;}*/
+/*======Hide on Order Confirmation Screen======*/  
+/*Hide distribution Information area*/
+/*#distribution-information {display: none;}*/
+/*Hide distribution location*/
+/*#distribution-location {display: none;}*/
+ /*====end Hide on Order Confirmation Screen====*/ 
+ /*======Hide Tab or Contents of credit card info panel in account info======*/
+ /*Hide Contents*/
+/*  #credit-card-info-panel {display: none;} */
+/*Hide Tab*/
+/* #form-update-account-info ul li:nth-child(3n) {display: none;} */ 
+/*========Hide subscriptions on Storefront========*/
+/*#info-nav-subscriptions, #account-subscriptions-link {display: none;} */  
+ /*======Hide on Order Confirmation Screen======*/  
+/*Hide distribution Information area*/
+/*#distribution-information {display: none;}*/
+/*Hide distribution Information Label*/
+/*#lbl-distribution-info {display: none;}*/
+/*Hide distribution location*/
+/*#distribution-location {display: none;}*/
+/*====end Hide on Order Confirmation Screen====*/ 

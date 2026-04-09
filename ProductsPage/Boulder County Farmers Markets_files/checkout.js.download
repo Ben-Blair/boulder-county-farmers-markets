@@ -1,0 +1,186 @@
+﻿function cardValid(field, cardType) {
+
+    if (field.value.substring(0, 1) == "x") {
+        // ignore masked card
+        return true;
+    }
+    
+    // loop backwards through the value to build compressedValue, checkSum, digitCount
+    i = field.value.length;
+    checkSum = 0;
+    compressedValue = "";
+    digitCount = 0;
+	if (!(cardType[cardType.selectedIndex].value == "MC" || cardType[cardType.selectedIndex].value == "VS" || cardType[cardType.selectedIndex].value == "AX" || cardType[cardType.selectedIndex].value == "DS" || cardType[cardType.selectedIndex].value == "")) {
+		// no validation for check and wire transfer numbers
+		return true;
+	}
+    while (i > 0) {
+        digit = "0123456789- \t\n".indexOf(field.value.charAt(i-1));
+        if (digit < 0) {
+            alert("Sorry, there is an invalid character in your card number");
+            return false;
+        } else if (digit < 10) { // a real number. spaces are ignored anyway
+            compressedValue = "" + digit + compressedValue;
+            checkSum = checkSum + (((((1 + (digitCount % 2)) * digit) - 1) % 9) + 1);
+            digitCount += 1;
+        }
+        i--;
+    }
+    // now we know there are no bad characters and have removed whitespace
+    if ((checkSum % 10) != 0) { // bad checksum
+        alert("Sorry, the card number you entered is not valid.");
+        field.value = "";
+        return false;
+    }
+    // now we know it's a valid checksum, but still must determine type of credit card and insert spaces
+    if (compressedValue.indexOf("34") == 0 || compressedValue.indexOf("37") == 0) { // American Express
+        if (digitCount != 15) {
+            alert("Sorry, the card number you entered is not valid.");
+            field.value = "";
+            return false;
+        }
+        field.value = compressedValue.substring(0,4) + " " + compressedValue.substring(4,10) + " " + compressedValue.substring(10,15);
+        if (setOption(cardType, "AX"))
+            return true;
+    } else if (compressedValue.indexOf("51") == 0 || compressedValue.indexOf("52") == 0 || compressedValue.indexOf("53") == 0 || compressedValue.indexOf("54") == 0 || compressedValue.indexOf("55") == 0) { // MasterCard
+        if (digitCount != 16) {
+            field.value = "";
+            alert("Sorry, the card number you entered is not valid.");
+            return false;
+        }
+        field.value = compressedValue.substring(0,4) + " " + compressedValue.substring(4,8) + " " + compressedValue.substring(8,12) + " " + compressedValue.substring(12,16);
+        if (setOption(cardType, "MC"))
+            return true;
+    } else if (compressedValue.indexOf("4") == 0) { // Visa
+        if (digitCount != 16 && digitCount != 13) {
+            alert("Sorry, the card number you entered is not valid.");
+            field.value = "";
+            return false;
+        }
+        if (digitCount == 16) {
+            field.value = compressedValue.substring(0,4) + " " + compressedValue.substring(4,8) + " " + compressedValue.substring(8,12) + " " + compressedValue.substring(12,16);
+        } else { 
+            field.value = compressedValue.substring(0,4) + " " + compressedValue.substring(4,7) + " " + compressedValue.substring(7,10) + " " + compressedValue.substring(10,13);
+        }
+        if (setOption(cardType, "VS"))
+            return true;
+    } else if (compressedValue.indexOf("6011") == 0) { // Discover
+        if (digitCount != 16) {
+            alert("Sorry, the card number you entered is not valid.");
+            field.value = "";
+            return false;
+        }
+        if (digitCount == 16) {
+            field.value = compressedValue.substring(0,4) + " " + compressedValue.substring(4,8) + " " + compressedValue.substring(8,12) + " " + compressedValue.substring(12,16);
+        } 
+        if (setOption(cardType, "DS"))
+            return true;
+    }
+     
+    if (field.value.length == 0) {
+        return true;
+    }
+     
+    alert("Sorry, the card number you entered is not valid or not accepted.");
+    field.value = "";
+    field.focus();
+    return false;
+}
+function setOption(selectElement, value) {
+    var options = selectElement.options;
+    for (var i = 0, optionsLength = options.length; i < optionsLength; i++) {
+        if (options[i].value == value) {
+            selectElement.selectedIndex = i;
+            return true;
+        }
+    }
+    return false;
+}
+
+function showLoading() {
+    $("#global-overlay").show();
+    $("#global-spinner").show();
+}
+function hideLoading() {
+    $("#global-overlay").hide();
+    $("#global-spinner").hide();
+}
+
+/* show a spinner on a specific element instead of the whole page */
+function showElementLoading(elem) {
+    $("#" + elem + "-overlay").show();
+    $("#" + elem + "-spinner").show();
+}
+function hideElementLoading(elem) {
+    $("#" + elem + "-overlay").hide();
+    $("#" + elem + "-spinner").hide();
+}
+
+function showError(message) {
+
+    if ($("#alert-danger-text")) {
+        $("#alert-danger-text").html(message);
+    }
+    if ($("#alert-area-warning")) {
+        $("#alert-area-warning").show();
+    }
+}
+function showSuccess(message) {
+    if ($("#alert-success-text")) {
+        $("#alert-success-text").html(message);
+    }
+    if ($("#alert-area-success")) {
+        $("#alert-area-success").show();
+    }
+}
+
+function showElementError(message, elem) {
+
+    if ($("#" + elem + "-alert-danger-text")) {
+        $("#" + elem + "-alert-danger-text").html(message);
+    }
+    if ($("#" + elem + "-alert-area-warning")) {
+        $("#" + elem + "-alert-area-warning").show();
+    }
+}
+function showElementSuccess(message, elem) {
+    if ($("#" + elem + "-alert-success-text")) {
+        $("#" + elem + "-alert-success-text").html(message);
+    }
+    if ($("#" + elem + "-alert-area-success")) {
+        $("#" + elem + "-alert-area-success").show();
+    }
+}
+
+function hideMessage(whichOne) {
+    $("#alert-" + whichOne + "-text").html("");
+    $("#alert-area-" + whichOne).hide();
+}
+
+function setImage(src) {
+
+    let srcImage = $("#product-modal-image" + src).attr("src");
+
+    // swap the images
+    $("#product-modal-image").attr("src", srcImage);
+
+    // remove active class
+    $("#product-modal-image1-container").removeClass("image-selected");
+    $("#product-modal-image2-container").removeClass("image-selected");
+    $("#product-modal-image3-container").removeClass("image-selected");
+
+    // add active class to selected
+    $("#product-modal-image" + src + "-container").addClass("image-selected");
+
+}
+
+function convertUTCDateToLocalDate(date) {
+    var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+
+    var offset = date.getTimezoneOffset() / 60;
+    var hours = date.getHours();
+
+    newDate.setHours(hours - offset);
+
+    return newDate;
+}
