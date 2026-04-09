@@ -1,0 +1,247 @@
+/**
+ * ATLAS accessibility refinements — Boulder County Farmers Markets static site
+ * WCAG 2.4.7 Focus Visible, 1.4.3 Contrast (targeted overrides)
+ */
+
+:root {
+  /* High-contrast focus ring on light / mixed backgrounds */
+  --a11y-focus-color: #004d99;
+  --a11y-focus-halo: #ffffff;
+  --a11y-focus-width: 4px;
+  --a11y-focus-offset: 3px;
+  /* Dark UI (header bar, footer) */
+  --a11y-focus-on-dark: #ffe566;
+  --a11y-focus-on-dark-halo: #0d1f2d;
+}
+
+/* Skip link — WCAG 2.4.1 Bypass Blocks */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 100001;
+  padding: 0.75rem 1.25rem;
+  background: #0d1f2d;
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: underline;
+  border-radius: 0 0 4px 0;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  clip: auto;
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-on-dark);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-on-dark-halo), 0 0 0 6px var(--a11y-focus-on-dark);
+}
+
+/* 2.4.7 — unmistakable keyboard focus: thick outline + light halo for contrast on photos/colors */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.dropdown-item:focus-visible,
+.navbar-brand:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
+
+.navbar-toggler:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
+
+/* Dark header — blue ring is hard to see; use bright ring + dark halo */
+.header-nav a:focus-visible,
+.header-nav button:focus-visible,
+.header-nav .navbar-brand:focus-visible {
+  outline-color: var(--a11y-focus-on-dark);
+  box-shadow: 0 0 0 2px var(--a11y-focus-on-dark-halo), 0 0 0 6px var(--a11y-focus-on-dark);
+}
+
+/* Dark footer */
+.site-footer.bg-dark a:focus-visible,
+.site-footer.bg-dark button:focus-visible {
+  outline-color: var(--a11y-focus-on-dark);
+  box-shadow: 0 0 0 2px var(--a11y-focus-on-dark-halo), 0 0 0 6px var(--a11y-focus-on-dark);
+}
+
+/* Photo / brand color panels — white ring + dark outer edge */
+.bg-green a:focus-visible,
+.bg-green button:focus-visible,
+.bg-green .btn:focus-visible,
+.bg-orange a:focus-visible,
+.bg-orange button:focus-visible,
+.bg-orange .btn:focus-visible {
+  outline-color: #ffffff;
+  box-shadow: 0 0 0 2px #0a1a12, 0 0 0 6px #ffffff;
+}
+
+/* Newsletter strip (dark green) */
+.newsletter-form-static a:focus-visible,
+.newsletter-form-static button:focus-visible,
+.newsletter-form-static input:focus-visible {
+  outline-color: var(--a11y-focus-on-dark);
+  box-shadow: 0 0 0 2px var(--a11y-focus-on-dark-halo), 0 0 0 6px var(--a11y-focus-on-dark);
+}
+
+/* Flickity carousel — library sets outline:0 and its own box-shadow */
+.flickity-button:focus,
+.flickity-button:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color) !important;
+  outline-offset: var(--a11y-focus-offset) !important;
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo), 0 0 0 6px var(--a11y-focus-color) !important;
+}
+
+/*
+ * Instagram feed thumbnails: sbi-styles.min.css sets outline:0 on #sb_instagram a:focus,
+ * and .sbi_item uses overflow:hidden (clips outer outlines). Inset box-shadow on the <a>
+ * paints *behind* the full-bleed <img>, so the ring was invisible. ::after stacks above the image.
+ */
+#sb_instagram .sbi_photo {
+  position: relative;
+}
+#sb_instagram .sbi_photo:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 1;
+}
+#sb_instagram .sbi_photo:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+  box-shadow:
+    inset 0 0 0 3px var(--a11y-focus-halo),
+    inset 0 0 0 6px var(--a11y-focus-color);
+}
+
+/* Other links in the feed block (e.g. header) — not clipped the same way */
+#sb_instagram a:not(.sbi_photo):focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
+
+/* Windows High Contrast / forced-colors: follow system focus */
+@media (forced-colors: active) {
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  .btn:focus-visible,
+  .nav-link:focus-visible,
+  .dropdown-item:focus-visible,
+  .navbar-toggler:focus-visible,
+  .flickity-button:focus,
+  .flickity-button:focus-visible {
+    outline: 3px solid ButtonText !important;
+    outline-offset: 3px !important;
+    box-shadow: none !important;
+  }
+
+  #sb_instagram .sbi_photo:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  #sb_instagram .sbi_photo:focus-visible::after {
+    box-shadow: none !important;
+    border: 3px solid ButtonText;
+    box-sizing: border-box;
+  }
+}
+
+/* 1.4.3 — stronger orange on white for highlights (approx. 4.5:1) */
+.a11y-accent-orange,
+section .a11y-accent-orange {
+  color: #a84600 !important;
+}
+
+/* Hero H1 over video — white text + shadow for contrast on moving imagery */
+.hero .text-highlight .text-highlight--line {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 1px rgba(0, 0, 0, 0.9);
+}
+
+/* White text on photo panels — improve contrast on busy backgrounds */
+.bg-green .fw-bolder,
+.bg-orange .fw-bolder,
+.bg-green h2,
+.bg-orange h2,
+.bg-green h3,
+.bg-orange h3 {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 1px rgba(0, 0, 0, 0.9);
+}
+
+/* Newsletter form accessible demo */
+.newsletter-form-static label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #fff;
+}
+.newsletter-form-static .field-hint {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  opacity: 0.95;
+}
+.newsletter-form-static [role="alert"] {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.newsletter-form-static input[aria-invalid="true"] {
+  border: 2px solid #ffb4b4 !important;
+}
+
+/* Decorative full-bleed image — no informative content */
+.img--full-bleed[alt=""] {
+  pointer-events: none;
+}
+
+/* Hero headline — full opacity for readability (WCAG 1.4.3) */
+.hero__content__txt {
+  opacity: 1 !important;
+}
+
+/* WCAG 2.3.3 — respect reduced motion: hide autoplay background video */
+@media (prefers-reduced-motion: reduce) {
+  .hero__images__image iframe#hero-bg-video {
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    border: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Language switcher (button) */
+.g-translate button:focus-visible {
+  outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 2px var(--a11y-focus-halo);
+}
