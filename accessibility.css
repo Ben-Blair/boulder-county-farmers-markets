@@ -323,3 +323,26 @@ section .a11y-accent-orange {
   outline: var(--a11y-focus-width) solid var(--a11y-focus-color);
   outline-offset: 2px;
 }
+
+/* WCAG 1.4.3 — marketplace: Theme orange links and small/secondary text on #fff / #F5F5F7 */
+.products-site .content-area a:link,
+.products-site .content-area a:visited,
+.products-site #content a:link,
+.products-site #content a:visited {
+  color: #a84600;
+}
+.products-site .content-area a:hover,
+.products-site #content a:hover {
+  color: #8a3800;
+}
+.products-site .shopping-cart-text,
+.products-site .product-grid-tagline,
+.products-site .product-grid-unit-reg-price,
+.products-site .product-grid-unit-more-avail,
+.products-site .uk-card-title {
+  color: #3d3d3d;
+}
+.products-site .product-list-header,
+.products-site .product-category-header {
+  color: #1a1a1a;
+}
